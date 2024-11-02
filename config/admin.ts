@@ -14,7 +14,10 @@ export default ({ env }) => ({
 
   transfer: {
     token: {
-      salt: env("TRANSFER_TOKEN_SALT"),
+      salt: env(
+        "TRANSFER_TOKEN_SALT",
+        "aa25539aa51cdcaac9d91e37cbee8e60156848126e36fe966123b9216b650fec"
+      ),
     },
   },
   flags: {
