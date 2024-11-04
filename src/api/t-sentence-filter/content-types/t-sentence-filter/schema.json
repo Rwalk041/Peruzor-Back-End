@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "t_sentence_filters",
+  "info": {
+    "singularName": "t-sentence-filter",
+    "pluralName": "t-sentence-filters",
+    "displayName": "T_Sentence_Filter"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Sentence": {
+      "type": "text"
+    }
+  }
+}
