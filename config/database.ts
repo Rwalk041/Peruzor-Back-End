@@ -8,16 +8,7 @@ export default ({ env }) => {
     postgres: {
       connection: {
         // Use DATABASE_URL for connection string if it's provided
-        connectionString: env(
-          "DATABASE_URL",
-          "postgresql://${{PGUSER}}:${{POSTGRES_PASSWORD}}@${{RAILWAY_PRIVATE_DOMAIN}}:5432/${{PGDATABASE}}"
-        ),
-        // Alternatively, use separate environment variables for more control
-        // // host: env('DATABASE_HOST', 'your-postgres-host'), // e.g., Railway PostgreSQL host
-        // port: env.int('DATABASE_PORT', 5432), // Default PostgreSQL port
-        // database: env('DATABASE_NAME', 'your-database-name'),
-        // user: env('DATABASE_USERNAME', 'your-username'),
-        // password: env('DATABASE_PASSWORD', 'your-password'),
+        connectionString: env("DATABASE_URL"),
         ssl: {
           rejectUnauthorized: env.bool(
             "DATABASE_SSL_REJECT_UNAUTHORIZED",
