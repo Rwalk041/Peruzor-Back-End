@@ -8,7 +8,10 @@ export default ({ env }) => {
     postgres: {
       connection: {
         // Use DATABASE_URL for connection string if it's provided
-        connectionString: env("DATABASE_URL"),
+        connectionString: env(
+          "DATABASE_URL",
+          "postgresql://postgres:lkNTVAiulAKJQgtDGQuhftmvjJAFyaIA@autorack.proxy.rlwy.net:19173/railway"
+        ),
         ssl: {
           rejectUnauthorized: env.bool(
             "DATABASE_SSL_REJECT_UNAUTHORIZED",
@@ -33,6 +36,15 @@ export default ({ env }) => {
   };
 };
 
+// connection: {
+//   host: env("DATABASE_HOST", "postgres.railway.internal"), // Replace with your Railway host
+//   port: env.int("DATABASE_PORT", 5432), // Default PostgreSQL port
+//   database: env("DATABASE_NAME", "your-database-name"), // Replace with your database name
+//   user: env("DATABASE_USERNAME", "postgres"), // Replace with your database username
+//   password: env("DATABASE_PASSWORD", "BCfubZEjqsNMVCuESfMOohsiPoHbktyC"), // Replace with your password
+//   ssl: { rejectUnauthorized: false },
+//   schema: env("DATABASE_SCHEMA", "public"),
+// },
 // import path from 'path';
 
 // export default ({ env }) => {
