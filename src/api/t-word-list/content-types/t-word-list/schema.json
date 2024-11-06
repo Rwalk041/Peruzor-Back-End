@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "t_word_lists",
+  "info": {
+    "singularName": "t-word-list",
+    "pluralName": "t-word-lists",
+    "displayName": "T_Word-List"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "level": {
+      "type": "string"
+    },
+    "Words": {
+      "type": "json"
+    }
+  }
+}
