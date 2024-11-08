@@ -4,7 +4,8 @@
   "info": {
     "singularName": "t-word-list",
     "pluralName": "t-word-lists",
-    "displayName": "T_Word-List"
+    "displayName": "T_Word-List",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "level": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "Words": {
       "type": "json"

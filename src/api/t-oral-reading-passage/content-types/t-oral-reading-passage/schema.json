@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "t_oral_reading_passages",
+  "info": {
+    "singularName": "t-oral-reading-passage",
+    "pluralName": "t-oral-reading-passages",
+    "displayName": "T_Oral_Reading_Passage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "level": {
+      "type": "string"
+    },
+    "story": {
+      "type": "text"
+    }
+  }
+}

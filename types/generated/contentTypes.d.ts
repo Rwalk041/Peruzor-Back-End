@@ -513,6 +513,35 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiTOralReadingPassageTOralReadingPassage
+  extends Struct.CollectionTypeSchema {
+  collectionName: 't_oral_reading_passages';
+  info: {
+    singularName: 't-oral-reading-passage';
+    pluralName: 't-oral-reading-passages';
+    displayName: 'T_Oral_Reading_Passage';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    level: Schema.Attribute.String;
+    story: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::t-oral-reading-passage.t-oral-reading-passage'
+    >;
+  };
+}
+
 export interface ApiTSentenceFilterTSentenceFilter
   extends Struct.CollectionTypeSchema {
   collectionName: 't_sentence_filters';
@@ -547,12 +576,13 @@ export interface ApiTWordListTWordList extends Struct.CollectionTypeSchema {
     singularName: 't-word-list';
     pluralName: 't-word-lists';
     displayName: 'T_Word-List';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    level: Schema.Attribute.String;
+    level: Schema.Attribute.String & Schema.Attribute.Unique;
     Words: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -945,6 +975,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::global.global': ApiGlobalGlobal;
+      'api::t-oral-reading-passage.t-oral-reading-passage': ApiTOralReadingPassageTOralReadingPassage;
       'api::t-sentence-filter.t-sentence-filter': ApiTSentenceFilterTSentenceFilter;
       'api::t-word-list.t-word-list': ApiTWordListTWordList;
       'admin::permission': AdminPermission;
