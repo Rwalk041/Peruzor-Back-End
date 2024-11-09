@@ -520,13 +520,19 @@ export interface ApiTOralReadingPassageTOralReadingPassage
     singularName: 't-oral-reading-passage';
     pluralName: 't-oral-reading-passages';
     displayName: 'T_Oral_Reading_Passage';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    level: Schema.Attribute.String;
-    story: Schema.Attribute.Text;
+    level: Schema.Attribute.String & Schema.Attribute.Required;
+    story: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+    QuestionAnswer: Schema.Attribute.JSON;
+    position: Schema.Attribute.BigInteger &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

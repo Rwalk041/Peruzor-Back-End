@@ -4,7 +4,8 @@
   "info": {
     "singularName": "t-oral-reading-passage",
     "pluralName": "t-oral-reading-passages",
-    "displayName": "T_Oral_Reading_Passage"
+    "displayName": "T_Oral_Reading_Passage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,10 +13,24 @@
   "pluginOptions": {},
   "attributes": {
     "level": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "story": {
-      "type": "text"
+      "type": "text",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "QuestionAnswer": {
+      "type": "json"
+    },
+    "position": {
+      "type": "biginteger",
+      "required": true,
+      "unique": true
     }
   }
 }
