@@ -470,6 +470,10 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    t_user_level: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::t-user-level.t-user-level'
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -510,6 +514,38 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::global.global'>;
+  };
+}
+
+export interface ApiTLevelTLevel extends Struct.CollectionTypeSchema {
+  collectionName: 't_levels';
+  info: {
+    singularName: 't-level';
+    pluralName: 't-levels';
+    displayName: 'T_Levels';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String & Schema.Attribute.Unique;
+    level_ID: Schema.Attribute.BigInteger & Schema.Attribute.Unique;
+    t_user_level: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::t-user-level.t-user-level'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::t-level.t-level'
+    >;
   };
 }
 
@@ -572,6 +608,39 @@ export interface ApiTSentenceFilterTSentenceFilter
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::t-sentence-filter.t-sentence-filter'
+    >;
+  };
+}
+
+export interface ApiTUserLevelTUserLevel extends Struct.CollectionTypeSchema {
+  collectionName: 't_user_levels';
+  info: {
+    singularName: 't-user-level';
+    pluralName: 't-user-levels';
+    displayName: 'T-User-Level';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    level_name: Schema.Attribute.Relation<'oneToOne', 'api::t-level.t-level'>;
+    username: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::t-user-level.t-user-level'
     >;
   };
 }
@@ -981,8 +1050,10 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::global.global': ApiGlobalGlobal;
+      'api::t-level.t-level': ApiTLevelTLevel;
       'api::t-oral-reading-passage.t-oral-reading-passage': ApiTOralReadingPassageTOralReadingPassage;
       'api::t-sentence-filter.t-sentence-filter': ApiTSentenceFilterTSentenceFilter;
+      'api::t-user-level.t-user-level': ApiTUserLevelTUserLevel;
       'api::t-word-list.t-word-list': ApiTWordListTWordList;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;

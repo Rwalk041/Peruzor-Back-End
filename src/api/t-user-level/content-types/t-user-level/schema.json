@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "t_user_levels",
+  "info": {
+    "singularName": "t-user-level",
+    "pluralName": "t-user-levels",
+    "displayName": "T-User-Level",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "isActive": {
+      "type": "boolean",
+      "default": false
+    },
+    "level_name": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::t-level.t-level",
+      "inversedBy": "t_user_level"
+    },
+    "username": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "t_user_level"
+    }
+  }
+}

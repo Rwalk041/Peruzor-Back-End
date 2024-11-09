@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "t_levels",
+  "info": {
+    "singularName": "t-level",
+    "pluralName": "t-levels",
+    "displayName": "T_Levels"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true
+    },
+    "level_ID": {
+      "type": "biginteger",
+      "unique": true
+    },
+    "t_user_level": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::t-user-level.t-user-level",
+      "inversedBy": "level_name"
+    }
+  }
+}
