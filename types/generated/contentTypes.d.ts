@@ -470,8 +470,8 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    t_user_level: Schema.Attribute.Relation<
-      'oneToOne',
+    t_user_levels: Schema.Attribute.Relation<
+      'oneToMany',
       'api::t-user-level.t-user-level'
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -530,8 +530,8 @@ export interface ApiTLevelTLevel extends Struct.CollectionTypeSchema {
   attributes: {
     name: Schema.Attribute.String & Schema.Attribute.Unique;
     level_ID: Schema.Attribute.BigInteger & Schema.Attribute.Unique;
-    t_user_level: Schema.Attribute.Relation<
-      'oneToOne',
+    t_user_levels: Schema.Attribute.Relation<
+      'oneToMany',
       'api::t-user-level.t-user-level'
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -625,9 +625,9 @@ export interface ApiTUserLevelTUserLevel extends Struct.CollectionTypeSchema {
   };
   attributes: {
     isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    level_name: Schema.Attribute.Relation<'oneToOne', 'api::t-level.t-level'>;
+    level_name: Schema.Attribute.Relation<'manyToOne', 'api::t-level.t-level'>;
     username: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
     createdAt: Schema.Attribute.DateTime;

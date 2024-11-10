@@ -65,11 +65,11 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "t_user_level": {
+    "t_user_levels": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::t-user-level.t-user-level",
-      "inversedBy": "username"
+      "mappedBy": "username"
     }
   }
 }

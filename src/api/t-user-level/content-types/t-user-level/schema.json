@@ -18,15 +18,15 @@
     },
     "level_name": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::t-level.t-level",
-      "inversedBy": "t_user_level"
+      "inversedBy": "t_user_levels"
     },
     "username": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "t_user_level"
+      "inversedBy": "t_user_levels"
     }
   }
 }
