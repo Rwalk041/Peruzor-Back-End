@@ -91,7 +91,7 @@ module.exports = createCoreController(
           );
         }
 
-        // Step 1: Find the user by username or email
+        // Step 1: Find the user by either username or email
         const user = await strapi
           .query("plugin::users-permissions.user")
           .findOne({
@@ -104,14 +104,17 @@ module.exports = createCoreController(
           return ctx.notFound("User not found.");
         }
 
-        // Step 2: Find the `t-user-level` entry based on `level_id` and `user.id`
+        // Step 2: Find the `t-user-level` entry based on `level_name.level_ID` and `user.id`
         const userLevelEntry = await strapi
           .query("api::t-user-level.t-user-level")
           .findOne({
             where: {
-              level_name: level_id,
               username: user.id,
+              level_name: {
+                level_ID: level_id,
+              },
             },
+            populate: ["level_name"], // Make sure to populate the `level_name` relation to access `level_ID`
           });
 
         if (!userLevelEntry) {
