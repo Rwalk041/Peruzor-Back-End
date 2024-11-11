@@ -81,5 +81,60 @@ module.exports = createCoreController(
         return ctx.internalServerError("Failed to fetch user levels.");
       }
     },
+    async updateUserLevelActiveStatus(ctx) {
+      try {
+        const { identifier, level_id } = ctx.request.body;
+
+        if (!identifier || !level_id) {
+          return ctx.badRequest(
+            "Identifier (username or email) and level_id are required."
+          );
+        }
+
+        // Step 1: Find the user by username or email
+        const user = await strapi
+          .query("plugin::users-permissions.user")
+          .findOne({
+            where: {
+              $or: [{ username: identifier }, { email: identifier }],
+            },
+          });
+
+        if (!user) {
+          return ctx.notFound("User not found.");
+        }
+
+        // Step 2: Find the `t-user-level` entry based on `level_id` and `user.id`
+        const userLevelEntry = await strapi
+          .query("api::t-user-level.t-user-level")
+          .findOne({
+            where: {
+              level_name: level_id,
+              username: user.id,
+            },
+          });
+
+        if (!userLevelEntry) {
+          return ctx.notFound("User level entry not found.");
+        }
+
+        // Step 3: Update the `isActive` attribute to `true`
+        const updatedEntry = await strapi.entityService.update(
+          "api::t-user-level.t-user-level",
+          userLevelEntry.id,
+          {
+            data: {
+              isActive: true,
+            },
+          }
+        );
+
+        // Step 4: Return the updated entry
+        return ctx.send({ updatedEntry });
+      } catch (error) {
+        console.error("Error updating user level:", error);
+        return ctx.internalServerError("Failed to update user level.");
+      }
+    },
   })
 );

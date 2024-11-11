@@ -16,5 +16,13 @@ module.exports = {
         auth: false, // or true if authentication is required
       },
     },
+    {
+      method: "POST",
+      path: "/t-user-levels/update-UserLevel-ActiveStatus",
+      handler: "t-user-level.updateUserLevelActiveStatus",
+      config: {
+        auth: false, // or true if authentication is required
+      },
+    },
   ],
 };
