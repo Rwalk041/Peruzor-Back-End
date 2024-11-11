@@ -105,7 +105,7 @@ module.exports = createCoreController(
         }
 
         // Step 2: Find the `t-user-level` entry based on `level_name.level_ID` and `user.id`
-        const userLevelEntry = await strapi
+        let userLevelEntry = await strapi
           .query("api::t-user-level.t-user-level")
           .findOne({
             where: {
@@ -118,22 +118,32 @@ module.exports = createCoreController(
           });
 
         if (!userLevelEntry) {
-          return ctx.notFound("User level entry not found.");
+          // Step 3: If the entry does not exist, create a new one
+          userLevelEntry = await strapi.entityService.create(
+            "api::t-user-level.t-user-level",
+            {
+              data: {
+                username: user.id,
+                level_name: { id: level_id }, // Assuming `level_id` is the ID of the `level_name` relation
+                isActive: true, // Set isActive to true for the new entry
+              },
+            }
+          );
+        } else {
+          // Step 4: If the entry exists, update `isActive` attribute to `true`
+          userLevelEntry = await strapi.entityService.update(
+            "api::t-user-level.t-user-level",
+            userLevelEntry.id,
+            {
+              data: {
+                isActive: true,
+              },
+            }
+          );
         }
 
-        // Step 3: Update the `isActive` attribute to `true`
-        const updatedEntry = await strapi.entityService.update(
-          "api::t-user-level.t-user-level",
-          userLevelEntry.id,
-          {
-            data: {
-              isActive: true,
-            },
-          }
-        );
-
         // Step 4: Return the updated entry
-        return ctx.send({ updatedEntry });
+        return ctx.send({ userLevelEntry });
       } catch (error) {
         console.error("Error updating user level:", error);
         return ctx.internalServerError("Failed to update user level.");
