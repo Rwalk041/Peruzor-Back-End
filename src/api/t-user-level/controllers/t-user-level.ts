@@ -124,7 +124,7 @@ module.exports = createCoreController(
             {
               data: {
                 username: user.id,
-                level_name: { id: level_id }, // Assuming `level_id` is the ID of the `level_name` relation
+                level_name: level_id, // Assuming `level_id` is the ID of the `level_name` relation
                 isActive: true, // Set isActive to true for the new entry
               },
             }
