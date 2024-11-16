@@ -45,7 +45,7 @@ module.exports = createCoreController(
         return ctx.internalServerError("Failed to create user levels.");
       }
     },
-    async getUserByUsernameOrEmail(ctx) {
+    async getUserLevelsByUsernameOrEmail(ctx) {
       try {
         const identifier = ctx.request.body.identifier; // Single field in request body
 

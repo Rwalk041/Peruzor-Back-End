@@ -10,8 +10,8 @@ module.exports = {
     },
     {
       method: "POST",
-      path: "/t-user-levels/getUserBy-Username-Email",
-      handler: "t-user-level.getUserByUsernameOrEmail",
+      path: "/t-user-levels/getUserLevelsBy-Username-Email",
+      handler: "t-user-level.getUserLevelsByUsernameOrEmail",
       config: {
         auth: false, // or true if authentication is required
       },
