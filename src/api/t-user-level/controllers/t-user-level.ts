@@ -114,21 +114,51 @@ module.exports = createCoreController(
                 level_ID: level_id,
               },
             },
-            populate: ["level_name"], // Make sure to populate the `level_name` relation to access `level_ID`
+            populate: ["level_name", "username"], // Make sure to populate the `level_name` relation to access `level_ID`
           });
 
+        // const levels = await strapi.entityService.findOne(
+        //   "api::t-level.t-level"
+        // );
+
+        console.log({ notin: level_id });
+
         if (!userLevelEntry) {
+          console.log({ level_id });
+          let levelEntry = await strapi.entityService.findMany(
+            "api::t-level.t-level",
+            {
+              filters: { level_ID: level_id },
+              limit: 1,
+            }
+          );
+          console.log({ levelEntry });
+          console.log({ idddddd: levelEntry[0].id });
           // Step 3: If the entry does not exist, create a new one
-          userLevelEntry = await strapi.entityService.create(
+
+          const userLevelEntries = await strapi.entityService.create(
             "api::t-user-level.t-user-level",
             {
               data: {
-                username: user.id,
-                level_name: level_id, // Assuming `level_id` is the ID of the `level_name` relation
-                isActive: true, // Set isActive to true for the new entry
+                isActive: true,
+                // Referencing the related level and user IDs
+                level_name: levelEntry[0].id, // This will reference the related level
+                username: user.id, // This will reference the related user
               },
+              populate: ["level_name"],
             }
           );
+
+          // userLevelEntry = await strapi.entityService.create(
+          //   "api::t-user-level.t-user-level",
+          //   {
+          //     data: {
+          //       username: user.id,
+          //       level_name: levelEntry.id, // Assuming `level_id` is the ID of the `level_name` relation
+          //       isActive: true, // Set isActive to true for the new entry
+          //     },
+          //   }
+          // );
         } else {
           // Step 4: If the entry exists, update `isActive` attribute to `true`
           userLevelEntry = await strapi.entityService.update(
