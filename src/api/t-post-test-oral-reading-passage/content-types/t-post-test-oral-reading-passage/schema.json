@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "t_post_test_oral_reading_passages",
+  "info": {
+    "singularName": "t-post-test-oral-reading-passage",
+    "pluralName": "t-post-test-oral-reading-passages",
+    "displayName": " T_Post_Test_Oral_Reading_Passage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "level": {
+      "type": "string"
+    },
+    "story": {
+      "type": "text"
+    },
+    "title": {
+      "type": "string"
+    },
+    "QuestionAnswer": {
+      "type": "json"
+    }
+  }
+}

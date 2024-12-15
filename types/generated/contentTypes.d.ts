@@ -584,6 +584,95 @@ export interface ApiTOralReadingPassageTOralReadingPassage
   };
 }
 
+export interface ApiTPostTestOralReadingPassageTPostTestOralReadingPassage
+  extends Struct.CollectionTypeSchema {
+  collectionName: 't_post_test_oral_reading_passages';
+  info: {
+    singularName: 't-post-test-oral-reading-passage';
+    pluralName: 't-post-test-oral-reading-passages';
+    displayName: ' T_Post_Test_Oral_Reading_Passage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    level: Schema.Attribute.String;
+    story: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+    QuestionAnswer: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::t-post-test-oral-reading-passage.t-post-test-oral-reading-passage'
+    >;
+  };
+}
+
+export interface ApiTPostTestSentenceFilterTPostTestSentenceFilter
+  extends Struct.CollectionTypeSchema {
+  collectionName: 't_post_test_sentence_filters';
+  info: {
+    singularName: 't-post-test-sentence-filter';
+    pluralName: 't-post-test-sentence-filters';
+    displayName: 'T_Post_Test_Sentence_Filter';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Sentence: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::t-post-test-sentence-filter.t-post-test-sentence-filter'
+    >;
+  };
+}
+
+export interface ApiTPostTestWordListTPostTestWordList
+  extends Struct.CollectionTypeSchema {
+  collectionName: 't_post_test_word_lists';
+  info: {
+    singularName: 't-post-test-word-list';
+    pluralName: 't-post-test-word-lists';
+    displayName: 'T_Post_Test_Word_List';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    level: Schema.Attribute.String;
+    words: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::t-post-test-word-list.t-post-test-word-list'
+    >;
+  };
+}
+
 export interface ApiTSentenceFilterTSentenceFilter
   extends Struct.CollectionTypeSchema {
   collectionName: 't_sentence_filters';
@@ -1052,6 +1141,9 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::t-level.t-level': ApiTLevelTLevel;
       'api::t-oral-reading-passage.t-oral-reading-passage': ApiTOralReadingPassageTOralReadingPassage;
+      'api::t-post-test-oral-reading-passage.t-post-test-oral-reading-passage': ApiTPostTestOralReadingPassageTPostTestOralReadingPassage;
+      'api::t-post-test-sentence-filter.t-post-test-sentence-filter': ApiTPostTestSentenceFilterTPostTestSentenceFilter;
+      'api::t-post-test-word-list.t-post-test-word-list': ApiTPostTestWordListTPostTestWordList;
       'api::t-sentence-filter.t-sentence-filter': ApiTSentenceFilterTSentenceFilter;
       'api::t-user-level.t-user-level': ApiTUserLevelTUserLevel;
       'api::t-word-list.t-word-list': ApiTWordListTWordList;

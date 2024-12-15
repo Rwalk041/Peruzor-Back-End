@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "t_post_test_word_lists",
+  "info": {
+    "singularName": "t-post-test-word-list",
+    "pluralName": "t-post-test-word-lists",
+    "displayName": "T_Post_Test_Word_List"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "level": {
+      "type": "string"
+    },
+    "words": {
+      "type": "json"
+    }
+  }
+}
