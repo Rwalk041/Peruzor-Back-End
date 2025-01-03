@@ -11,7 +11,7 @@ export default ({ env }) => {
         connectionString: env(
           "DATABASE_URL",
           // "postgresql://postgres:lkNTVAiulAKJQgtDGQuhftmvjJAFyaIA@autorack.proxy.rlwy.net:19173/railway"
-          "postgresql://postgres:StRCjagLBLHUlbggNXvmLgAUqxPqpKfT@autorack.proxy.rlwy.net:19173/railway"
+          "postgresql://postgres:StRCjagLBLHUlbggNXvmLgAUqxPqpKfT@postgres.railway.internal:5432/railway"
         ),
         ssl: {
           rejectUnauthorized: env.bool(
