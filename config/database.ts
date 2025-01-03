@@ -10,7 +10,8 @@ export default ({ env }) => {
         // Use DATABASE_URL for connection string if it's provided
         connectionString: env(
           "DATABASE_URL",
-          "postgresql://postgres:lkNTVAiulAKJQgtDGQuhftmvjJAFyaIA@autorack.proxy.rlwy.net:19173/railway"
+          // "postgresql://postgres:lkNTVAiulAKJQgtDGQuhftmvjJAFyaIA@autorack.proxy.rlwy.net:19173/railway"
+          "postgresql://postgres:StRCjagLBLHUlbggNXvmLgAUqxPqpKfT@autorack.proxy.rlwy.net:19173/railway"
         ),
         ssl: {
           rejectUnauthorized: env.bool(
